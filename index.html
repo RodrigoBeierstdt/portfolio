@@ -72,12 +72,20 @@
         .project-card-grid {
             background-color: #161b22; 
             transition: transform 0.3s, box-shadow 0.3s;
+            /* Garante que o conteúdo do card ocupe todo o espaço da célula grid */
+            height: 100%; 
+            display: flex; /* Adicionado para garantir que o conteúdo interno empurre o footer para baixo */
+            flex-direction: column;
         }
 
         .project-card-grid:hover {
             transform: translateY(-5px); /* Efeito "levantar" */
             box-shadow: 0 10px 20px rgba(0, 188, 212, 0.2); /* Sombra ciano no hover */
             border-color: var(--accent-main);
+        }
+        
+        .project-card-grid .p-4 {
+            flex-grow: 1; /* Garante que o corpo do texto ocupe o espaço restante */
         }
     </style>
 </head>
@@ -155,7 +163,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16 space-y-10">
             
             <section id="sobre" class="content-card p-8 rounded-xl">
-                <h2 class="text-3xl font-bold main-title mb-4">✨ Sobre Mim</h2>
+                <h2 class="text-3xl font-bold main-title mb-4">Sobre Mim</h2>
                 <p class="text-gray-300 leading-relaxed">
                     Estudante de Engenharia de Software com foco no <strong>Desenvolvimento Back-end</strong>. Minha base é sólida em <strong>Programação Orientada a Objetos (POO)</strong> com <strong>Java</strong>, o que me permite criar estruturas de código limpas e funcionais, como demonstrado em meus projetos. Estou constantemente me aprimorando em linguagens como Python e buscando novas formas de aplicar lógica e design de software em soluções eficientes. Sou motivado pelo desafio e pela melhoria contínua.
                 </p>
@@ -176,9 +184,9 @@
             <section id="projetos" class="p-8 rounded-xl">
                 <h2 class="text-3xl font-bold main-title mb-8 text-center">🚀 Meus Projetos de Destaque</h2>
                 
-                <div class="flex justify-center">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     
-                    <a href="https://github.com/RodrigoBeierstdt/Sistema-Fluxo-de-Caixa-Java" target="_blank" class="block w-full max-w-md">
+                    <a href="https://github.com/RodrigoBeierstdt/Sistema-Fluxo-de-Caixa-Java" target="_blank" class="block">
                         <div class="project-card-grid content-card rounded-xl overflow-hidden border-2 border-transparent">
                             <img src="foto/Screenshot_1.png" alt="Screenshot do Sistema de Fluxo de Caixa em Console" class="w-full h-48 object-cover border-b border-gray-700">
                             <div class="p-4">
@@ -189,7 +197,7 @@
                         </div>
                     </a>
 
- <a href="https://github.com/RodrigoBeierstdt/ConversorMoedas" target="_blank" class="block w-full max-w-md">
+                    <a href="https://github.com/RodrigoBeierstdt/ConversorMoedas" target="_blank" class="block">
                         <div class="project-card-grid content-card rounded-xl overflow-hidden border-2 border-transparent">
                             <img src="foto/capa.png" alt="Conversor de Moedas" class="w-full h-48 object-cover border-b border-gray-700">
                             <div class="p-4">
@@ -200,7 +208,7 @@
                         </div>
                     </a>
 
-                    <a href="https://github.com/RodrigoBeierstdt/CalculadoraSwing" target="_blank" class="block w-full max-w-md">
+                    <a href="https://github.com/RodrigoBeierstdt/CalculadoraSwing" target="_blank" class="block">
                         <div class="project-card-grid content-card rounded-xl overflow-hidden border-2 border-transparent">
                             <img src="foto/java.png" alt="Conversor de Moedas" class="w-full h-48 object-cover border-b border-gray-700">
                             <div class="p-4">
@@ -210,7 +218,8 @@
                             </div>
                         </div>
                     </a>
-  <a href=https://github.com/RodrigoBeierstdt/SistemaCadastroLogin target="_blank" class="block w-full max-w-md">
+
+                    <a href=https://github.com/RodrigoBeierstdt/SistemaCadastroLogin target="_blank" class="block">
                         <div class="project-card-grid content-card rounded-xl overflow-hidden border-2 border-transparent">
                             <img src="foto/Screenshot_3.png" alt="Cadastro e Login" class="w-full h-48 object-cover border-b border-gray-700">
                             <div class="p-4">
@@ -220,12 +229,23 @@
                             </div>
                         </div>
                     </a>
+
+                    <a href=https://github.com/RodrigoBeierstdt/Biblioteca target="_blank" class="block">
+                        <div class="project-card-grid content-card rounded-xl overflow-hidden border-2 border-transparent">
+                            <img src="foto/biblioteca.png" alt="Biblioteca" class="w-full h-48 object-cover border-b border-gray-700">
+                            <div class="p-4">
+                                <h3 class="text-xl font-semibold main-title mb-1">Sistema Biblioteca</h3>
+                                <p class="text-gray-400 text-sm">Sistema de locação e devolvimento de livros feito usando POO</p>
+                                <span class="text-xs text-cyan-400 mt-2 block">Tecnologia: Java (POO)</span>
+                            </div>
+                        </div>
+                    </a>
                 </div>
                 <p class="text-center text-gray-500 italic mt-6">Novos projetos, como APIs em Spring Boot, serão adicionados em breve!</p>
             </section>
 
             <section id="experiencia" class="content-card p-8 rounded-xl">
-                 <h2 class="text-3xl font-bold main-title mb-4">💼 Experiência & Educação</h2>
+                <h2 class="text-3xl font-bold main-title mb-4">💼 Experiência & Educação</h2>
                 
                 <div class="space-y-6">
                     <div class="border-l-4 border-cyan-500 pl-4">
