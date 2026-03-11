@@ -3,266 +3,429 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rodrigo - Portfólio de Engenharia de Software</title>
-    
-    <script src="https://cdn.tailwindcss.com"></script>
-    
+    <title>Rodrigo Beierstdt — Engenharia de Software</title>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
     <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
         :root {
-            /* Cores do tema Dark Mode */
-            --bg-body: #0d1117; 
-            --bg-card: #161b22;
-            --border-card: #30363d;
-            --text-light: #c9d1d9;
-            --accent-main: #00bcd4; /* Azul Ciano Vibrante (Tech Vibe) */
+            --bg:        #09080f;
+            --surface:   #100e1a;
+            --surface2:  #15122200;
+            --border:    #211d30;
+            --border2:   #2e2845;
+            --text:      #9b94b8;
+            --white:     #ede9f8;
+            --purple:    #a78bfa;
+            --purple2:   #7c3aed;
+            --purple-soft: rgba(167,139,250,.1);
+            --purple-glow: rgba(124,58,237,.25);
         }
-        
+
+        html { scroll-behavior: smooth; }
+
         body {
             font-family: 'Inter', sans-serif;
-            background-color: var(--bg-body);
-            color: var(--text-light);
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
         }
 
-        .header-style {
-            background-color: var(--bg-card);
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        /* ── HEADER ── */
+        header {
+            position: sticky; top: 0; z-index: 50;
+            background: rgba(9,8,15,.88);
+            backdrop-filter: blur(14px);
+            border-bottom: 1px solid var(--border);
+        }
+        .header-inner {
+            max-width: 1020px; margin: 0 auto;
+            padding: 0 2rem; height: 62px;
+            display: flex; align-items: center; justify-content: space-between;
+        }
+        .logo {
+            font-family: 'Syne', sans-serif;
+            font-size: 1rem; font-weight: 700;
+            color: var(--white); letter-spacing: -.01em;
+        }
+        nav { display: flex; align-items: center; gap: 2rem; }
+        nav a {
+            font-size: .82rem; font-weight: 500; letter-spacing: .02em;
+            color: var(--text); text-decoration: none; transition: color .2s;
+        }
+        nav a:hover { color: var(--white); }
+        .nav-icons { display: flex; gap: .85rem; }
+        .nav-icons a { color: var(--text); display: flex; transition: color .2s; }
+        .nav-icons a:hover { color: var(--purple); }
+        .nav-icons svg { width: 18px; height: 18px; }
+
+        /* ── HERO ── */
+        .hero-wrap {
+            max-width: 1020px; margin: 0 auto;
+            padding: 6rem 2rem 5rem;
+        }
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 190px;
+            gap: 3.5rem; align-items: center;
         }
 
-        /* Estilo aprimorado para o cartão de conteúdo */
-        .content-card {
-            background-color: var(--bg-card);
-            border: 1px solid var(--border-card);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Sombra mais profunda */
+        .status {
+            display: inline-flex; align-items: center; gap: .45rem;
+            font-size: .76rem; font-weight: 500; color: var(--text);
+            background: var(--surface);
+            border: 1px solid var(--border);
+            padding: .28rem .85rem; border-radius: 20px;
+            margin-bottom: 2rem; letter-spacing: .02em;
+        }
+        .status-dot {
+            width: 6px; height: 6px; border-radius: 50%;
+            background: #86efac; box-shadow: 0 0 6px #86efac;
+            animation: blink 2.5s ease-in-out infinite;
+        }
+        @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.25} }
+
+        h1 {
+            font-family: 'Syne', sans-serif;
+            font-size: clamp(2.6rem, 5.8vw, 4rem);
+            font-weight: 800; color: var(--white);
+            line-height: 1.08; letter-spacing: -.03em;
+            margin-bottom: 1.2rem;
+        }
+        h1 span { color: var(--purple); }
+
+        .hero-sub {
+            font-size: 1rem; font-weight: 400;
+            color: var(--text); max-width: 440px;
+            line-height: 1.75; margin-bottom: 2.25rem;
+        }
+        .hero-sub strong { color: var(--white); font-weight: 500; }
+
+        .hero-actions { display: flex; gap: .85rem; flex-wrap: wrap; }
+
+        .btn-primary {
+            display: inline-flex; align-items: center; gap: .5rem;
+            padding: .65rem 1.5rem;
+            background: var(--purple2); color: #fff;
+            font-family: 'Inter', sans-serif;
+            font-size: .86rem; font-weight: 600;
+            border-radius: 8px; text-decoration: none;
+            box-shadow: 0 0 24px var(--purple-glow);
+            transition: background .2s, transform .15s, box-shadow .2s;
+        }
+        .btn-primary:hover {
+            background: #6d28d9;
+            box-shadow: 0 0 36px var(--purple-glow);
+            transform: translateY(-2px);
+        }
+        .btn-primary svg { width: 14px; height: 14px; }
+
+        .btn-ghost {
+            display: inline-flex; align-items: center; gap: .5rem;
+            padding: .65rem 1.5rem;
+            border: 1px solid var(--border2); color: var(--text);
+            font-family: 'Inter', sans-serif;
+            font-size: .86rem; font-weight: 500;
+            border-radius: 8px; text-decoration: none;
+            transition: border-color .2s, color .2s;
+        }
+        .btn-ghost:hover { border-color: var(--purple); color: var(--white); }
+
+        /* avatar */
+        .avatar-box {
+            position: relative; width: 190px; height: 190px; flex-shrink: 0;
+        }
+        .avatar-box::before {
+            content: ''; position: absolute; inset: -3px; border-radius: 20px;
+            background: linear-gradient(135deg, var(--purple2), transparent 55%);
+        }
+        .avatar-box img {
+            position: relative; width: 100%; height: 100%;
+            object-fit: cover; border-radius: 17px; display: block;
+            border: 2px solid var(--bg);
         }
 
-        .skill-tag {
-            background-color: #21262d; 
-            border: 1px solid var(--border-card);
-            color: var(--accent-main);
-        }
-        
-        .download-button {
-            background-color: var(--accent-main);
-            transition: background-color 0.2s;
-        }
-        .download-button:hover {
-            background-color: #0097a7; 
+        /* ── PAGE ── */
+        .page {
+            max-width: 1020px; margin: 0 auto;
+            padding: 0 2rem 6rem;
+            display: flex; flex-direction: column; gap: 1.6rem;
         }
 
-        .main-title {
-            color: #ffffff;
+        .card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 14px; padding: 2.25rem 2.5rem;
+        }
+        .sec-label {
+            font-size: .68rem; font-weight: 600; color: var(--purple);
+            letter-spacing: .14em; text-transform: uppercase; margin-bottom: .35rem;
+        }
+        .sec-title {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.3rem; font-weight: 700;
+            color: var(--white); margin-bottom: 1.4rem;
         }
 
-        /* Estilo da Foto de Perfil */
-        .profile-picture {
-            width: 150px; 
-            height: 150px;
-            border-radius: 50%; 
-            object-fit: cover; 
-            border: 4px solid var(--accent-main); 
-            margin-bottom: 2rem; 
-            box-shadow: 0 0 20px rgba(0, 188, 212, 0.6); /* Sombra luminosa mais forte */
+        /* sobre */
+        .sobre-body { font-size: .96rem; color: var(--text); line-height: 1.9; max-width: 680px; }
+        .sobre-body strong { color: var(--white); font-weight: 500; }
+
+        /* skills */
+        .skills-wrap { display: flex; flex-wrap: wrap; gap: .5rem; }
+        .skill {
+            font-size: .8rem; font-weight: 500; color: var(--text);
+            background: rgba(255,255,255,.03); border: 1px solid var(--border);
+            padding: .27rem .8rem; border-radius: 6px;
+            transition: border-color .2s, color .2s;
+        }
+        .skill:hover { border-color: var(--purple); color: var(--white); }
+
+        /* projetos */
+        .proj-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(248px, 1fr));
+            gap: .95rem;
+        }
+        .proj-card {
+            background: var(--bg); border: 1px solid var(--border);
+            border-radius: 12px; overflow: hidden;
+            text-decoration: none; display: flex; flex-direction: column;
+            transition: border-color .22s, transform .22s, box-shadow .22s;
+        }
+        .proj-card:hover {
+            border-color: rgba(167,139,250,.35);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 32px rgba(0,0,0,.45);
+        }
+        .proj-card img { width: 100%; height: 152px; object-fit: cover; display: block; border-bottom: 1px solid var(--border); }
+        .proj-body { padding: 1rem 1.15rem 1.2rem; display: flex; flex-direction: column; flex: 1; }
+        .proj-name { font-family: 'Syne', sans-serif; font-size: .9rem; font-weight: 700; color: var(--white); margin-bottom: .28rem; }
+        .proj-desc { font-size: .83rem; color: var(--text); line-height: 1.65; flex: 1; }
+        .proj-tags { margin-top: .8rem; display: flex; gap: .32rem; flex-wrap: wrap; }
+        .proj-tag {
+            font-size: .67rem; font-weight: 600; color: var(--purple);
+            background: var(--purple-soft); padding: .12rem .5rem; border-radius: 4px;
+        }
+        .proj-note {
+            text-align: center; font-size: .83rem; color: var(--text);
+            opacity: .4; margin-top: 1.3rem;
         }
 
-        /* Estilo para os cards de projeto na grade */
-        .project-card-grid {
-            background-color: #161b22; 
-            transition: transform 0.3s, box-shadow 0.3s;
-            /* Garante que o conteúdo do card ocupe todo o espaço da célula grid */
-            height: 100%; 
-            display: flex; /* Adicionado para garantir que o conteúdo interno empurre o footer para baixo */
-            flex-direction: column;
-        }
+        /* timeline */
+        .timeline { display: flex; flex-direction: column; }
+        .tl-row { display: grid; grid-template-columns: 150px 1px 1fr; gap: 0 1.75rem; }
+        .tl-date { font-size: .76rem; font-weight: 500; color: var(--text); opacity: .5; text-align: right; padding-top: .2rem; line-height: 1.5; }
+        .tl-spine { display: flex; flex-direction: column; align-items: center; }
+        .tl-dot { width: 9px; height: 9px; flex-shrink: 0; border-radius: 50%; background: var(--purple); box-shadow: 0 0 8px var(--purple-glow); margin-top: .25rem; }
+        .tl-dot.edu { background: #60a5fa; box-shadow: 0 0 8px rgba(96,165,250,.3); }
+        .tl-line { flex: 1; width: 1px; background: var(--border); margin: 6px 0; }
+        .tl-content { padding-bottom: 2.2rem; }
+        .tl-role { font-family: 'Syne', sans-serif; font-size: .97rem; font-weight: 700; color: var(--white); margin-bottom: .12rem; }
+        .tl-company { font-size: .8rem; color: var(--text); opacity: .6; margin-bottom: .7rem; }
+        .tl-list { padding-left: 1rem; }
+        .tl-list li { font-size: .87rem; color: var(--text); line-height: 1.75; margin-bottom: .18rem; list-style: disc; }
+        .tl-list li::marker { color: var(--purple); }
+        .tl-plain { font-size: .87rem; color: var(--text); line-height: 1.75; }
 
-        .project-card-grid:hover {
-            transform: translateY(-5px); /* Efeito "levantar" */
-            box-shadow: 0 10px 20px rgba(0, 188, 212, 0.2); /* Sombra ciano no hover */
-            border-color: var(--accent-main);
-        }
-        
-        .project-card-grid .p-4 {
-            flex-grow: 1; /* Garante que o corpo do texto ocupe o espaço restante */
+        /* footer */
+        footer { border-top: 1px solid var(--border); padding: 2rem 2rem; text-align: center; }
+        footer p { font-size: .82rem; color: var(--text); opacity: .45; }
+        footer a { color: var(--purple); text-decoration: none; opacity: 1; }
+        footer a:hover { text-decoration: underline; }
+
+        /* fade */
+        .fade { opacity: 0; transform: translateY(16px); transition: opacity .5s ease, transform .5s ease; }
+        .fade.on { opacity: 1; transform: none; }
+
+        /* responsive */
+        @media (max-width: 680px) {
+            .hero-grid { grid-template-columns: 1fr; }
+            .avatar-box { width: 120px; height: 120px; order: -1; }
+            .tl-row { grid-template-columns: 1px 1fr; }
+            .tl-date { display: none; }
+            .card { padding: 1.5rem 1.25rem; }
         }
     </style>
 </head>
+<body>
 
-<body class="antialiased">
-    <div class="min-h-screen">
-        
-        <header class="header-style sticky top-0 z-10">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="flex justify-between items-center h-16">
-                    <div class="flex-shrink-0">
-                        <span class="text-xl font-bold main-title">Rodrigo | Software Engineer</span>
-                    </div>
-
-                    <nav class="flex items-center space-x-6">
-                        <a href="#sobre" class="text-sm font-medium hover:text-white transition duration-150">Sobre</a>
-                        <a href="#habilidades" class="text-sm font-medium hover:text-white transition duration-150">Habilidades</a>
-                        <a href="#projetos" class="text-sm font-medium hover:text-white transition duration-150">Projetos</a>
-                        
-                        <a 
-                            href="https://github.com/RodrigoBeierstdt" 
-                            target="_blank" 
-                            class="text-gray-400 hover:text-white"
-                            aria-label="GitHub"
-                        >
-                            <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
-                                <path fill-rule="evenodd" d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57v-2.19c-3.345.72-4.05-.18-4.05-.18-.54-1.35-1.32-1.71-1.32-1.71-1.08-.735.075-.72.075-.72 1.2.085 1.83.615 1.83.615 1.065 1.83 2.785 1.3 3.475.995.105-.77.41-1.3.75-1.59-2.655-.3-5.45-1.32-5.45-5.91 0-1.31.465-2.38 1.235-3.22-.12-.3-.535-1.52.12-3.18 0 0 1.005-.32 3.3.615 1.005-.28 2.065-.42 3.12-.42s2.115.14 3.12.42c2.295-.935 3.3-.615 3.3-.615.655 1.66.24 2.88.12 3.18.77.84 1.235 1.91 1.235 3.22 0 4.59-2.8 5.6-5.47 5.9.42.36.81 1.09.81 2.22v3.29c0 .315.225.675.83.57C20.57 21.795 24 17.31 24 12c0-6.63-5.37-12-12-12z" clip-rule="evenodd" />
-                            </svg>
-                        </a>
-                         <a 
-                            href="https://www.linkedin.com/in/rodrigo-beierstdt-7327ab322" 
-                            target="_blank" 
-                            class="text-gray-400 hover:text-white"
-                            aria-label="LinkedIn"
-                        >
-                            <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M22.23 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.77 24 1.77 24h20.46c.98 0 1.77-.77 1.77-1.72V1.72c0-.95-.79-1.72-1.77-1-72zM7.2 20.4H3.8V9.3h3.4v11.1zM5.5 7.8c-1.16 0-2.1-.96-2.1-2.15S4.34 3.5 5.5 3.5s2.1.96 2.1 2.15-.94 2.15-2.1 2.15zm14.9 12.6h-3.4v-5.6c0-1.35-.48-2.27-1.72-2.27-1.25 0-1.99.85-2.32 1.68v.59c.02.04.04.07.05.11v5.5h-3.4s.04-10.12 0-11.1h3.4v1.54c.45-.66 1.25-1.6 3.06-1.6 2.23 0 3.9 1.46 3.9 4.6v6.66z"/>
-                            </svg>
-                        </a>
-                    </nav>
-                </div>
-            </div>
-        </header>
-
-        <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24">
-            <div class="text-center flex flex-col items-center">
-                
-                <img 
-                    src="foto/oiii.png" 
-                    alt="Foto de Perfil de Rodrigo" 
-                    class="profile-picture"
-                >
-
-                <h1 class="text-5xl lg:text-7xl font-extrabold tracking-tight main-title mb-4">
-                    Rodrigo Beierstdt
-                </h1>
-                <p class="text-xl lg:text-2xl text-gray-400 max-w-3xl mx-auto mb-8">
-                    Estudante de Engenharia de Software e <span class="text-cyan-400">Desenvolvedor Back-end Entusiasta</span>. Focado em criar soluções utilizando de linguagens de programação
-                
-                <a 
-                    href="https://drive.google.com/uc?export=download&id=12GYBmbgMlk-_SqZxA51izIXUc5FRS_Br" 
-                    download="Curriculo_Rodrigo_Beierstdt_da_Costa.pdf"
-                    class="download-button inline-flex items-center px-6 py-3 text-lg font-bold rounded-md shadow-lg text-white transition duration-300 uppercase tracking-widest group"
-                    target="_blank"
-                >
-                    <svg class="w-5 h-5 mr-2 text-white group-hover:scale-110 transition-transform duration-200" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 11.586V3a1 1 0 112 0v8.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd"></path>
-                    </svg>
-                    Baixar CV
-                </a>
-            </div>
-        </main>
-
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16 space-y-10">
-            
-            <section id="sobre" class="content-card p-8 rounded-xl">
-                <h2 class="text-3xl font-bold main-title mb-4">Sobre Mim</h2>
-                <p class="text-gray-300 leading-relaxed">
-                    Estudante de Engenharia de Software com foco no <strong>Desenvolvimento Back-end</strong>. Desde sempre apaixonado por<strong> programação e áreas relacionadas.</strong>  <strong>Entusiasta em linguagens</strong> como Java e Python, com experiência prática em projetos acadêmicos e pessoais. Atualmente, busco oportunidades para aplicar meus conhecimentos em desenvolvimento de sistemas, arquitetura de software e aprimorar minhas habilidades técnicas. Sou dedicado, curioso e sempre disposto a aprender novas tecnologias para me tornar um profissional completo na área de engenharia de software.
-                </p>
-            </section>
-
-            <section id="habilidades" class="content-card p-8 rounded-xl">
-                <h2 class="text-3xl font-bold main-title mb-4">🛠️ Habilidades Técnicas</h2>
-                <div class="flex flex-wrap gap-3">
-                    <span class="skill-tag px-3 py-1 rounded-md text-sm font-medium">Java</span>
-                    <span class="skill-tag px-3 py-1 rounded-md text-sm font-medium">Python</span>
-                    <span class="skill-tag px-3 py-1 rounded-md text-sm font-medium">HTML5</span>
-                    <span class="skill-tag px-3 py-1 rounded-md text-sm font-medium">CSS3 / Tailwind CSS</span>
-                    <span class="skill-tag px-3 py-1 rounded-md text-sm font-medium">Lógica de Programação</span>
-                    <span class="skill-tag px-3 py-1 rounded-md text-sm font-medium">SQL</span>
-                </div>
-            </section>
-
-            <section id="projetos" class="p-8 rounded-xl">
-                <h2 class="text-3xl font-bold main-title mb-8 text-center">🚀 Meus Projetos de Destaque</h2>
-                
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    
-                    <a href="https://github.com/RodrigoBeierstdt/CalculadoraSwing" target="_blank" class="block">
-                        <div class="project-card-grid content-card rounded-xl overflow-hidden border-2 border-transparent">
-                            <img src="foto/calculadora.png" alt="Calculadora" class="w-full h-48 object-cover border-b border-gray-700">
-                            <div class="p-4">
-                                <h3 class="text-xl font-semibold main-title mb-1">Calculadora - Java Swing</h3>
-                                <p class="text-gray-400 text-sm">Calculadora feita por Java com o uso de Swing.</p>
-                                <span class="text-xs text-cyan-400 mt-2 block">Tecnologia: JavaSwing</span>
-                            </div>
-                        </div>
-                    </a>
-
-                    <a href=https://github.com/RodrigoBeierstdt/Biblioteca target="_blank" class="block">
-                        <div class="project-card-grid content-card rounded-xl overflow-hidden border-2 border-transparent">
-                            <img src="foto/biblioteca.png" alt="Biblioteca" class="w-full h-48 object-cover border-b border-gray-700">
-                            <div class="p-4">
-                                <h3 class="text-xl font-semibold main-title mb-1">Sistema Biblioteca</h3>
-                                <p class="text-gray-400 text-sm">Sistema de locação e devolvimento de livros feito usando POO</p>
-                                <span class="text-xs text-cyan-400 mt-2 block">Tecnologia: Java (POO)</span>
-                            </div>
-                        </div>
-                    </a>
-
-                     <a href=https://github.com/RodrigoBeierstdt/ProjetoSteam target="_blank" class="block">
-                        <div class="project-card-grid content-card rounded-xl overflow-hidden border-2 border-transparent">
-                            <img src="foto/steam.png" alt="Verificação de jogos Steam" class="w-full h-48 object-cover border-b border-gray-700">
-                            <div class="p-4">
-                                <h3 class="text-xl font-semibold main-title mb-1">Verificação de jogos Steam</h3>
-                                <p class="text-gray-400 text-sm">Sistema de verificação de jogos disponíveis na plataforma Steam.</p>
-                                <span class="text-xs text-cyan-400 mt-2 block">Tecnologia: Python (FastAPI e Panda)</span>
-                            </div>
-                        </div>
-                    </a>
-
-                     <a href=https://github.com/RodrigoBeierstdt/DashboardFinancas target="_blank" class="block">
-                        <div class="project-card-grid content-card rounded-xl overflow-hidden border-2 border-transparent">
-                            <img src="foto/dashboard.png" alt="Dashboard de Finanças" class="w-full h-48 object-cover border-b border-gray-700">
-                            <div class="p-4">
-                                <h3 class="text-xl font-semibold main-title mb-1">Dashboard de Finanças</h3>
-                                <p class="text-gray-400 text-sm">Dashboard para análise e visualização de dados financeiros.</p>
-                                <span class="text-xs text-cyan-400 mt-2 block">Tecnologia: Python (Panda)</span>
-                            </div>
-                        </div>
-                    </a>
-
-
-                <p class="text-center text-gray-500 italic mt-6">Novos projetos, como APIs em Spring Boot, serão adicionados em breve!</p>
-            </section>
-
-            <section id="experiencia" class="content-card p-8 rounded-xl">
-                <h2 class="text-3xl font-bold main-title mb-4">💼 Experiência & Educação</h2>
-                
-                <div class="space-y-6">
-                    <div class="border-l-4 border-cyan-500 pl-4">
-                        <p class="text-lg font-semibold main-title">Gestor de Dados - Construtora Parati LTDA.</p>
-                        <p class="text-sm text-gray-400 mb-2">2024 - Momento Atual</p>
-                        <ul class="list-disc list-inside text-gray-300 text-sm space-y-1">
-                            <li>Organizava e mantinha bancos de dados de funcionários, incluindo horários, pagamentos e registros de treinamento, garantindo precisão e atualização constante.</li>
-                            <li>Automatizava processos internos simples utilizando planilhas avançadas em Excel, reduzindo retrabalho e aumentando a eficiência em 20%.</li>
-                            <li>Apoiava na análise de indicadores de RH, extraindo insights para melhorar processos internos.</li>
-                        </ul>
-                    </div>
-
-                    <div class="border-l-4 border-blue-500 pl-4">
-                        <p class="text-lg font-semibold main-title">Estudante de Engenharia de Software</p>
-                        <p class="text-sm text-gray-400">Pontificia Universidade Católica do Paraná (PUC-PR) | 2025 - Presente</p>
-                        <p class="text-sm text-gray-300 mt-1">Foco em Desenvolvimento de Sistemas e Arquitetura de Software.</p>
-                    </div>
-                </div>
-            </section>
+<header>
+    <div class="header-inner">
+        <span class="logo">Rodrigo Beierstdt</span>
+        <nav>
+            <a href="#sobre">Sobre</a>
+            <a href="#skills">Skills</a>
+            <a href="#projetos">Projetos</a>
+            <a href="#experiencia">Experiência</a>
+        </nav>
+        <div class="nav-icons">
+            <a href="https://github.com/RodrigoBeierstdt" target="_blank" aria-label="GitHub">
+                <svg fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57v-2.19c-3.345.72-4.05-.18-4.05-.18-.54-1.35-1.32-1.71-1.32-1.71-1.08-.735.075-.72.075-.72 1.2.085 1.83.615 1.83.615 1.065 1.83 2.785 1.3 3.475.995.105-.77.41-1.3.75-1.59-2.655-.3-5.45-1.32-5.45-5.91 0-1.31.465-2.38 1.235-3.22-.12-.3-.535-1.52.12-3.18 0 0 1.005-.32 3.3.615 1.005-.28 2.065-.42 3.12-.42s2.115.14 3.12.42c2.295-.935 3.3-.615 3.3-.615.655 1.66.24 2.88.12 3.18.77.84 1.235 1.91 1.235 3.22 0 4.59-2.8 5.6-5.47 5.9.42.36.81 1.09.81 2.22v3.29c0 .315.225.675.83.57C20.57 21.795 24 17.31 24 12c0-6.63-5.37-12-12-12z" clip-rule="evenodd"/></svg>
+            </a>
+            <a href="https://www.linkedin.com/in/rodrigo-beierstdt-7327ab322" target="_blank" aria-label="LinkedIn">
+                <svg fill="currentColor" viewBox="0 0 24 24"><path d="M22.23 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.77 24 1.77 24h20.46c.98 0 1.77-.77 1.77-1.72V1.72C24 .77 23.21 0 22.23 0zM7.2 20.4H3.8V9.3h3.4v11.1zM5.5 7.8c-1.09 0-1.97-.88-1.97-1.97S4.41 3.86 5.5 3.86s1.97.88 1.97 1.97S6.59 7.8 5.5 7.8zm14.9 12.6h-3.4v-5.6c0-1.34-.48-2.27-1.72-2.27-1.25 0-1.99.85-2.32 1.68-.12.29-.14.69-.14 1.1v5.09H9.4s.04-10.12 0-11.1h3.4v1.54c.45-.66 1.25-1.6 3.06-1.6 2.23 0 3.9 1.46 3.9 4.6v6.66z"/></svg>
+            </a>
         </div>
-
-        <footer class="header-style mt-16 py-8">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-sm text-gray-400">
-                <p>&copy; 2025 Rodrigo Beierstdt.</p>
-                <p>Email para contato: <a href="mailto:rodrigobeierstdtcosta@gmail.com" class="text-cyan-400 hover:text-cyan-300">rodrigobeierstdtcosta@gmail.com</a></p>
-            </div>
-        </footer>
-
     </div>
+</header>
+
+<div class="hero-wrap">
+    <div class="hero-grid">
+        <div>
+            <div class="status">
+                <span class="status-dot"></span>
+                Disponível para estágio
+            </div>
+            <h1>Rodrigo<br><span>Beierstdt</span></h1>
+            <p class="hero-sub">
+                Estudante de Engenharia de Software na PUC-PR, focado em
+                <strong>desenvolvimento back-end</strong> com Java e Python.
+                Construindo projetos reais enquanto busco minha primeira oportunidade na área.
+            </p>
+            <div class="hero-actions">
+                <a href="https://drive.google.com/uc?export=download&id=12GYBmbgMlk-_SqZxA51izIXUc5FRS_Br"
+                   download target="_blank" class="btn-primary">
+                    <svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 11.586V3a1 1 0 112 0v8.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+                    Baixar currículo
+                </a>
+                <a href="mailto:rodrigobeierstdtcosta@gmail.com" class="btn-ghost">Entrar em contato</a>
+            </div>
+        </div>
+        <div class="avatar-box">
+            <img src="foto/oiii.png" alt="Foto do Rodrigo">
+        </div>
+    </div>
+</div>
+
+<main class="page">
+
+    <section id="sobre" class="card fade">
+        <p class="sec-label">Sobre mim</p>
+        <h2 class="sec-title">Quem eu sou</h2>
+        <p class="sobre-body">
+            Estou no início da minha trajetória como desenvolvedor, mas não fico parado esperando — aprendo construindo. Minha maior afinidade é com o <strong>back-end</strong>: lógica, APIs, banco de dados, fluxo de dados. Trabalho principalmente com <strong>Java</strong> e <strong>Python</strong>, e estou evoluindo pra frameworks como <strong>Spring Boot</strong> e <strong>FastAPI</strong>.<br><br>
+            Paralelamente à faculdade, trabalho como gestor de dados numa construtora, onde aprendi na prática a lidar com informação de forma responsável e a automatizar o que dá pra automatizar. Quero um estágio onde eu possa crescer de verdade e contribuir com uma equipe de verdade.
+        </p>
+    </section>
+
+    <section id="skills" class="card fade">
+        <p class="sec-label">Habilidades técnicas</p>
+        <h2 class="sec-title">O que sei usar</h2>
+        <div class="skills-wrap">
+            <span class="skill">Java</span>
+            <span class="skill">Python</span>
+            <span class="skill">POO</span>
+            <span class="skill">FastAPI</span>
+            <span class="skill">Java Swing</span>
+            <span class="skill">Pandas</span>
+            <span class="skill">SQL</span>
+            <span class="skill">HTML5 & CSS3</span>
+            <span class="skill">Tailwind CSS</span>
+            <span class="skill">Git & GitHub</span>
+            <span class="skill">Lógica de Programação</span>
+        </div>
+    </section>
+
+    <section id="projetos" class="fade">
+        <p class="sec-label">Projetos</p>
+        <h2 class="sec-title" style="font-family:'Syne',sans-serif;font-size:1.3rem;font-weight:700;color:var(--white);margin-bottom:1.4rem;">O que já construí</h2>
+        <div class="proj-grid">
+
+            <a href="https://github.com/RodrigoBeierstdt/CalculadoraSwing" target="_blank" class="proj-card">
+                <img src="foto/calculadora.png" alt="Calculadora">
+                <div class="proj-body">
+                    <p class="proj-name">Calculadora — Java Swing</p>
+                    <p class="proj-desc">Interface gráfica funcional feita do zero com Swing.</p>
+                    <div class="proj-tags"><span class="proj-tag">Java</span><span class="proj-tag">Swing</span></div>
+                </div>
+            </a>
+
+            <a href="https://github.com/RodrigoBeierstdt/Biblioteca" target="_blank" class="proj-card">
+                <img src="foto/biblioteca.png" alt="Biblioteca">
+                <div class="proj-body">
+                    <p class="proj-name">Sistema de Biblioteca</p>
+                    <p class="proj-desc">Sistema de locação e devolução de livros com POO aplicado.</p>
+                    <div class="proj-tags"><span class="proj-tag">Java</span><span class="proj-tag">POO</span></div>
+                </div>
+            </a>
+
+            <a href="https://github.com/RodrigoBeierstdt/ProjetoSteam" target="_blank" class="proj-card">
+                <img src="foto/steam.png" alt="Steam">
+                <div class="proj-body">
+                    <p class="proj-name">Verificação de Jogos Steam</p>
+                    <p class="proj-desc">Consumo da API da Steam para consulta e listagem de jogos.</p>
+                    <div class="proj-tags"><span class="proj-tag">Python</span><span class="proj-tag">FastAPI</span><span class="proj-tag">Pandas</span></div>
+                </div>
+            </a>
+
+            <a href="https://github.com/RodrigoBeierstdt/DashboardFinancas" target="_blank" class="proj-card">
+                <img src="foto/dashboard.png" alt="Dashboard">
+                <div class="proj-body">
+                    <p class="proj-name">Dashboard de Finanças</p>
+                    <p class="proj-desc">Análise e visualização de dados financeiros com Python.</p>
+                    <div class="proj-tags"><span class="proj-tag">Python</span><span class="proj-tag">Pandas</span></div>
+                </div>
+            </a>
+
+        </div>
+        <p class="proj-note">API REST com Spring Boot em desenvolvimento — em breve aqui.</p>
+    </section>
+
+    <section id="experiencia" class="card fade">
+        <p class="sec-label">Trajetória</p>
+        <h2 class="sec-title">Experiência & Formação</h2>
+        <div class="timeline">
+
+            <div class="tl-row">
+                <div class="tl-date">2024 — hoje</div>
+                <div class="tl-spine">
+                    <div class="tl-dot"></div>
+                    <div class="tl-line"></div>
+                </div>
+                <div class="tl-content">
+                    <p class="tl-role">Gestor de Dados</p>
+                    <p class="tl-company">Construtora Parati LTDA.</p>
+                    <ul class="tl-list">
+                        <li>Manutenção de banco de dados de funcionários — horários, pagamentos, treinamentos.</li>
+                        <li>Automatização de processos internos com Excel, reduzindo retrabalho em ~20%.</li>
+                        <li>Análise de indicadores de RH para apoio em decisões internas.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="tl-row">
+                <div class="tl-date">2025 — hoje</div>
+                <div class="tl-spine">
+                    <div class="tl-dot edu"></div>
+                </div>
+                <div class="tl-content">
+                    <p class="tl-role">Engenharia de Software</p>
+                    <p class="tl-company">PUC-PR — Pontificia Universidade Católica do Paraná</p>
+                    <p class="tl-plain">Foco em desenvolvimento de sistemas, arquitetura de software e boas práticas de engenharia.</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+</main>
+
+<footer>
+    <p>&copy; 2025 Rodrigo Beierstdt &nbsp;·&nbsp; <a href="mailto:rodrigobeierstdtcosta@gmail.com">rodrigobeierstdtcosta@gmail.com</a></p>
+</footer>
+
+<script>
+    const io = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+            if (e.isIntersecting) { e.target.classList.add('on'); io.unobserve(e.target); }
+        });
+    }, { threshold: 0.08 });
+    document.querySelectorAll('.fade').forEach(el => io.observe(el));
+</script>
 </body>
 </html>
